@@ -1,0 +1,6 @@
+# config/config.yaml
+hdfs:
+  base_dir: "hdfs://localhost:9000/user/sources"
+  sample_size: 5
+llm:
+  model_name: "deepseek-r1:8b"

@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from app.api.chatbot_endpoints import router as chatbot_router
+from app.api.user_endpoints import router as user_router
 # Initialize FastAPI app
 app = FastAPI(
     title="DataLakes Chatbot API",
@@ -11,8 +13,10 @@ app = FastAPI(
 def home():
     return {"message": "Welcome to the DataLakes Chatbot API!"}
 
-from app.api.chatbot_endpoints import router
-app.include_router(router, prefix="/api")
+
+app.include_router(chatbot_router, prefix="/api")
+app.include_router(user_router, prefix="/api")
+
 
 if __name__ == "__main__":
     import uvicorn

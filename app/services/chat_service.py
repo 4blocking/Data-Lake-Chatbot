@@ -17,7 +17,7 @@ MODEL_NAME = config["llm"]["model_name"]
 
 
 def process_chat_query(query: str) -> str:
-    """Processes a user query by fetching relevant data and querying the LLM."""
+    """Processes a user query by fetching sample data and querying the LLM."""
 
     # Initialize DataSourceManager to get hdfs samples
     data_manager = DataSourceManager(HDFS_DIR, SAMPLE_SIZE)
@@ -36,10 +36,10 @@ def build_prompt(query, data_samples):
     """Builds a prompt for the LLM based on user query and HDFS data."""
     prompt = f"""
     Analyze the following HDFS data samples and identify which data sources contain information related to: '{query}'.
-    Provide the exact path and a brief explanation of its relevance.
+    Provide the exact path and a very brief explanation of its relevance.
     For each relevant data source, provide:
     1. The exact path to the data source.
-    2. A brief explanation of why it is relevant to the query.
+    2. A very brief explanation of why it is relevant to the query.
 
     Data Sources:
     """

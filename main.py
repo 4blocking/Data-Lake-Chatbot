@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.chatbot_endpoints import router as chatbot_router
+from app.api.chat_endpoints import router as chatbot_router
 from app.api.user_endpoints import router as user_router
 # Initialize FastAPI app
 app = FastAPI(

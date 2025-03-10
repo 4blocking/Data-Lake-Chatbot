@@ -15,12 +15,14 @@ class ChatRequest(BaseModel):
 
 # Chatbot endpoint
 @router.post("/chat")
-async def chat(request: ChatRequest, user = Depends(get_current_user) ,db: AsyncSession = Depends(get_db)):
+async def chat(request: ChatRequest,
+               #user = Depends(get_current_user) ,
+               db: AsyncSession = Depends(get_db)):
     """Handles chatbot queries and returns AI-generated responses."""
     response = process_chat_query(request.query)
     if not response:
         raise HTTPException(status_code=400, detail="Failed to generate response.")
-    await save_conversation(db,request.query,response,user.id)
+    # await save_conversation(db,request.query,response,user.id)
     return {"response": response}
 
 @router.get("/history")

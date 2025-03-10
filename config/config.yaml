@@ -2,5 +2,13 @@
 hdfs:
   base_dir: "hdfs://localhost:9000/user/sources"
   sample_size: 5
+  defaultFS: "hdfs://localhost:9000"
+
+hive:
+  host: "localhost"
+  port: 10000
+  database: "default"
+  metadata_table: "metadata"
+
 llm:
-  model_name: "deepseek-r1:8b"
+  model_name: "gpt-4o"

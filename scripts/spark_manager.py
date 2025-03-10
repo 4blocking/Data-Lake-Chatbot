@@ -1,5 +1,10 @@
 from pyspark.sql import SparkSession
+import yaml
 
+with open("config/config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+HDFS_DEFAULT_FS = config["hdfs"]["defaultFS"]
 
 # Singleton SparkSession instance
 _spark = None
@@ -11,7 +16,7 @@ def get_spark_session():
     if _spark is None:
         _spark = SparkSession.builder \
             .appName("HDFS_Reader") \
-            .config("spark.hadoop.fs.defaultFS", "hdfs://localhost:9000") \
+            .config("spark.hadoop.fs.defaultFS", HDFS_DEFAULT_FS) \
             .config("spark.driver.memory", "4g") \
             .config("spark.executor.memory", "4g") \
             .getOrCreate()

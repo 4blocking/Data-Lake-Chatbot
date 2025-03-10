@@ -12,3 +12,7 @@ hive:
 
 llm:
   model_name: "gpt-4o"
+
+openai:
+  api_key: "ENV_VAR"
+  model_name: "gpt-4o"

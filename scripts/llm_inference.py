@@ -2,13 +2,17 @@ import ollama
 import re
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
 from pydantic import BaseModel
 from typing import List
 
-# Read API key from environment variable
+# Load environment variables from .env
+load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 if not OPENAI_API_KEY:
-    raise ValueError("Error: Missing OpenAI API Key. Set OPENAI_API_KEY as an environment variable.")
+    raise ValueError("Error: Missing OpenAI API Key. Set it in .env or as an environment variable.")
+
 client = OpenAI(api_key=OPENAI_API_KEY)
 
 class DataSource(BaseModel):

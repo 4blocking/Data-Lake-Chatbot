@@ -16,3 +16,8 @@ llm:
 openai:
   api_key: "ENV_VAR"
   model_name: "gpt-4o"
+
+redis:
+  host: "localhost"
+  port: 6379
+  db: 0

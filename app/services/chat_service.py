@@ -1,6 +1,7 @@
 from scripts.llm_inference import generate_response
 from scripts.data_source_manager import DataSourceManager
 from scripts.hive_manager import read_metadata
+from scripts.cache_manager import get_cached_hdfs_samples,get_cached_hive_metadata,cache_hdfs_samples,cache_hive_metadata
 import yaml
 import os
 
@@ -19,11 +20,22 @@ MODEL_NAME = config["llm"]["model_name"]
 def process_chat_query(query: str) -> str | list[dict]:
     """Processes a user query by fetching sample data and querying the LLM."""
 
-    # Initialize DataSourceManager to get hdfs samples
-    data_manager = DataSourceManager(HDFS_DIR, SAMPLE_SIZE)
-    data_samples = data_manager.get_samples()
+    #get  data samples and metadata from cache if available
+    data_samples = get_cached_hdfs_samples()
+    metadata = get_cached_hive_metadata()
 
-    metadata = read_metadata()
+
+
+    # get data straight from HDFS if not found in cache
+    if not data_samples:
+        data_manager = DataSourceManager(HDFS_DIR, SAMPLE_SIZE)
+        data_samples = data_manager.get_samples()
+        cache_hdfs_samples(data_samples)
+
+    #get data from hive if not cached
+    if not metadata:
+        metadata = read_metadata()
+        cache_hive_metadata(metadata)
 
     if not data_samples and not metadata:
         return "No data sources found in HDFS or Hive .Ensure HDFS or Hive is running and your path is correct."

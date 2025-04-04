@@ -37,4 +37,4 @@ def read_metadata():
                 return cursor.fetchall()
     except Exception as e:
         print(f"Error reading metadata from Hive: {e}")
-        return None
+        return []

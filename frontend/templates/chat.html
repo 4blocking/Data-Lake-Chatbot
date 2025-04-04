@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="/static/chat.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">DL</div>
+            <span>Data Lake Semantic Map</span>
+        </div>
+         <button id="logout-button" class="logout-button">Logout</button>
+    </div>
+
+    <div class="chat-container" id="chat-container">
+
+    </div>
+
+    <div class="input-container">
+        <div class="input-wrapper">
+            <textarea id="message-input" placeholder="Prompt AI for Data Lake semantic enrichment..." rows="1"></textarea>
+            <button id="send-button" disabled>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</body>
+<script src="/static/chat.js" defer></script>
+</html>
